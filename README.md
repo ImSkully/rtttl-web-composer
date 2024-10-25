@@ -24,6 +24,8 @@ A rich web based composer for creating [Ring Tone Text Transfer Language (RTTTL)
 	<img width="800" src=".github/readme_preview.png" alt="RTTTL Web Composer Logo" />
 </div>
 
+This web application is built with barebones HTML & CSS, and vanilla JavaScript for the sake of simplicity. The frontend uses the [Tabler UI](https://github.com/tabler/tabler) framework, [BS5](https://github.com/twbs/bootstrap), and [jQuery](https://jquery.com) for UI components and interactivity.
+
 ***
 
 ## RTTTL
