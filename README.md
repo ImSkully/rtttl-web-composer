@@ -19,12 +19,12 @@ A rich web based composer for creating [Ring Tone Text Transfer Language (RTTTL)
 * 🎶 Dynamic RTTTL generation and browser playback using [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 * 📦 Generate or import RTTTL ringtone strings
 
+This web application is built with barebones HTML & CSS, and vanilla JavaScript for the sake of simplicity. The frontend uses the [Tabler UI](https://github.com/tabler/tabler) framework, [BS5](https://github.com/twbs/bootstrap), and [jQuery](https://jquery.com) for UI components and interactivity.
+
 <div align="center" style="padding: 25px;">
 	<h3><a href="https://imskully.github.io/rtttl-web-composer" target="_blank" title="Open RTTTL Web Composer">Open Demo Application</a></h3>
 	<img width="800" src=".github/readme_preview.png" alt="RTTTL Web Composer Logo" />
 </div>
-
-This web application is built with barebones HTML & CSS, and vanilla JavaScript for the sake of simplicity. The frontend uses the [Tabler UI](https://github.com/tabler/tabler) framework, [BS5](https://github.com/twbs/bootstrap), and [jQuery](https://jquery.com) for UI components and interactivity.
 
 ***
 
