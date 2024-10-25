@@ -3,8 +3,12 @@
 	<h2>RTTTL Web Composer</h2>
 </div>
 
-![License](https://img.shields.io/github/license/ImSkully/rtttl-web-composer)
-<a href="./package-lock.json" target="_blank" alt="package-lock"><img src="https://img.shields.io/badge/package--lock-committed-brightgreen" /></a>
+<p align="center">
+	<a href="./LICENSE" alt="Project License"><img src="https://img.shields.io/github/license/ImSkully/rtttl-web-composer" alt="License Badge" /></a>
+	<a href="./package-lock.json" alt="package-lock"><img src="https://img.shields.io/badge/package--lock-committed-brightgreen" /></a>
+	<a href="https://skully.tech/discord" target="_blank" alt="Join Discord"><img src="https://img.shields.io/discord/820142202666876938.svg" /></a>
+	<a href="https://imskully.github.io/rtttl-web-composer" target="_blank"><img src="https://img.shields.io/static/v1?label=Demo&message=Preview&color=228be6" alt="Open Preview Badge" /></a>
+</p>
 
 > [!NOTE]  
 > This README requires expansion.
@@ -14,6 +18,13 @@ A rich web based composer for creating [Ring Tone Text Transfer Language (RTTTL)
 * 📝 Interactive, responsive, and user-friendly web interface for creating RTTTL ringtones
 * 🎶 Dynamic RTTTL generation and browser playback using [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 * 📦 Generate or import RTTTL ringtone strings
+
+<div align="center" style="padding: 25px;">
+	<h3><a href="https://imskully.github.io/rtttl-web-composer" target="_blank" title="Open RTTTL Web Composer">Open Demo Application</a></h3>
+	<img width="800" src=".github/readme_preview.png" alt="RTTTL Web Composer Logo" />
+</div>
+
+***
 
 ## RTTTL
 
