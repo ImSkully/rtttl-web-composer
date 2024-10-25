@@ -1,0 +1,56 @@
+/*	  ____  ______ ______ ______ __		  ______
+*	 / __ \/_  __//_  __//_  __// /		 / ____/____   ____ ___   ____   ____   _____ ___   _____
+*	/ /_/ / / /    / /    / /  / /		/ /    / __ \ / __ `__ \ / __ \ / __ \ / ___// _ \ / ___/
+*  / _, _/ / /    / /    / /  / /___   / /___ / /_/ // / / / / // /_/ // /_/ /(__  )/  __// /
+* /_/ |_| /_/    /_/    /_/  /_____/   \____/ \____//_/ /_/ /_// .___/ \____//____/ \___//_/
+*			https://github.com/ImSkully/rtttl-web-composer	  /_*/
+
+:root {
+	--composer-table-height: 1.1rem;
+}
+
+.font-terminal {
+	font-family: 'Consolas', 'Courier New', Courier, monospace;
+}
+
+.header-table {
+	text-align: right;
+	border-bottom: white;
+	font-size: 12px;
+}
+
+.composer-table {
+	background-color: var(--tblr-gray-300);
+}
+
+.composer-table td, .composer-table th {
+	border-top-color: white;
+	border-bottom: 1px solid #DFDFDF;
+	color: #000;
+}
+
+.composer-table th {
+	font-weight: bold;
+	text-align: left;
+	font-size: 12px;
+	background: #E3F2D4;
+	border-right: 1px solid #DFDFDF;
+}
+
+.composer-table td {
+	/* font-size: 12px; */
+	padding: 8px;
+	/* vertical-align: top; */
+	border-right: 1px solid #DFDFDF;
+
+	/* TODO: This height below is what is currently making composer table inline with header table, find better way to handle alignment */
+	height: 2.61rem;
+}
+
+.composer-table .tone-enabled {
+	background: #d4e157;
+}
+
+.composer-table .playback-highlighter {
+	border-left: 2px solid green;
+}
