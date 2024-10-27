@@ -13,10 +13,12 @@ const ELEMENTS = {
 	BPM_SLIDER: $("#bpm-slider"),
 	DURATION_SELECTOR: $("#duration-selector"),
 	BPM_INPUT: $("#bpm-input"),
+	VOLUME_TEXT: $("#radio-toolbar-slider-volume-text"),
 	BUTTON: {
 		PLAY: $("#radio-toolbar-play"),
 		STOP: $("#radio-toolbar-stop"),
-		LOAD_FROM_TEXTAREA: $("#radio-toolbar-load-from-textarea")
+		LOAD_FROM_TEXTAREA: $("#radio-toolbar-load-from-textarea"),
+		VOLUME: $("#radio-toolbar-slider-volume")
 	}
 };
 
@@ -79,7 +81,7 @@ const COMPOSED_NOTES = [];
 const RTTTL = {
 	/** The AudioPlayer handles RTTTL playback via Web Audio API. */
 	AudioPlayer: (() => {
-		let context, noteVolume, oscillator, playbackTimeout;
+		let context, noteVolume, oscillator, gainNode, playbackTimeout;
 		let highlighterTimeouts = [];
 		let isPlaying = false;
 		let elapsedTime = 0;
@@ -95,8 +97,8 @@ const RTTTL = {
 			context = new (window.AudioContext || window.webkitAudioContext)();
 
 			// Create a gain node for volume control and connect it to the destination.
-			const gainNode = context.createGain();
-			gainNode.gain.value = 0.1; // TODO: Make this adjustable on the frontend.
+			gainNode = context.createGain();
+			gainNode.gain.value = 0.20;
 			gainNode.connect(context.destination);
 
 			// Create the oscillator and connect it to the gain node.
@@ -107,6 +109,15 @@ const RTTTL = {
 			oscillator = context.createOscillator();
 			oscillator.start(0); // Start immediately (but muted).
 			oscillator.connect(noteVolume);
+		};
+
+		/**
+		 * Sets the playback volume level.
+		 * @param {number} volume The volume level to set.
+		 */
+		const setVolume = (volume) => {
+			if (!context) init(); // Initialize the audio context if not already done.
+			gainNode.gain.value = volume / 100;
 		};
 
 		/**
@@ -192,7 +203,7 @@ const RTTTL = {
 			ELEMENTS.BUTTON.LOAD_FROM_TEXTAREA.attr("disabled", false);
 		};
 
-		return { start, stop, isPlaying: () => isPlaying };
+		return { start, stop, setVolume, isPlaying: () => isPlaying };
 	})(),
 
 	/** The RTTTL player settings and state. */
@@ -524,6 +535,13 @@ $(() => {
 	ELEMENTS.BUTTON.PLAY.on("click", RTTTL.AudioPlayer.start); // Start playback.
 	ELEMENTS.BUTTON.STOP.on("click", RTTTL.AudioPlayer.stop); // Stop playback.
 	ELEMENTS.BUTTON.LOAD_FROM_TEXTAREA.on("click", loadFromTextArea); // Load RTTTL from text area.
+
+	// Volume slider.
+	ELEMENTS.BUTTON.VOLUME.on("input", () => {
+		const newVolume = +ELEMENTS.BUTTON.VOLUME.val();
+		RTTTL.AudioPlayer.setVolume(newVolume);
+		ELEMENTS.VOLUME_TEXT.text(`${newVolume}%`);
+	});
 
 	/*========================================================================
 	# 							Keybind Event Listeners 					 #

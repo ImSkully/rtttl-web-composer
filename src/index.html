@@ -263,6 +263,7 @@
 													</svg>
 													Stop
 												</label>
+
 												<!-- Load From Text Area Button -->
 												<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-load-from-textarea" autocomplete="off" />
 												<label for="radio-toolbar-load-from-textarea" class="btn btn-info">
@@ -286,6 +287,31 @@
 													</svg>
 													Load From Text Area
 												</label>
+
+												<!-- Volume Button -->
+												<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" autocomplete="off">
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														class="icon icon-tabler icons-tabler-outline icon-tabler-volume"
+													>
+														<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+														<path d="M15 8a5 5 0 0 1 0 8" />
+														<path d="M17.7 5a9 9 0 0 1 0 14" />
+														<path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" />
+													</svg>
+													<div class="dropdown-menu p-2">
+														<label class="form-label text-center" id="radio-toolbar-slider-volume-text" for="radio-toolbar-slider-volume">20%</label>
+														<input type="range" class="form-range" value="20" min="0" max="100" id="radio-toolbar-slider-volume" />
+													</div>
+												</button>
 											</div>
 										</div>
 									</div>
