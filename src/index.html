@@ -119,10 +119,30 @@
 												<th>C</th>
 											</tr>
 											<tr>
-												<th>d</th>
+												<th>
+													<span
+														class="form-help mx-1"
+														data-bs-toggle="popover"
+														data-bs-placement="top"
+														data-bs-html="true"
+														data-bs-content="Controls the duration for individual notes, any column with <code>d</code> will use the default <strong>Duration</strong> that is set below."
+														>?</span
+													>
+													d
+												</th>
 											</tr>
 											<tr>
-												<th>o</th>
+												<th>
+													<span
+														class="form-help mx-1"
+														data-bs-toggle="popover"
+														data-bs-placement="top"
+														data-bs-html="true"
+														data-bs-content="Adjust the octave (pitch) for individual notes, any column with <code>o</code> will use the default <strong>Octave</strong> that is set below."
+														>?</span
+													>
+													o
+												</th>
 											</tr>
 										</tbody>
 									</table>
@@ -147,7 +167,16 @@
 												<input type="range" class="form-range mt-2" value="63" min="5" max="900" id="bpm-slider" />
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control disabled" id="bpm-input" value="63" readonly />
+												<input
+													data-bs-toggle="tooltip"
+													data-bs-placement="top"
+													title="Use left slider to adjust"
+													type="text"
+													class="form-control disabled"
+													id="bpm-input"
+													value="63"
+													readonly
+												/>
 											</div>
 										</div>
 									</div>
