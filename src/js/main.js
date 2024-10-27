@@ -13,12 +13,18 @@ const ELEMENTS = {
 	BPM_SLIDER: $("#bpm-slider"),
 	DURATION_SELECTOR: $("#duration-selector"),
 	BPM_INPUT: $("#bpm-input"),
+	VOLUME_TEXT: $("#radio-toolbar-slider-volume-text"),
 	BUTTON: {
 		PLAY: $("#radio-toolbar-play"),
 		STOP: $("#radio-toolbar-stop"),
-		LOAD_FROM_TEXTAREA: $("#radio-toolbar-load-from-textarea")
+		LOAD_FROM_TEXTAREA: $("#radio-toolbar-load-from-textarea"),
+		VOLUME: $("#radio-toolbar-slider-volume")
 	}
 };
+
+/** Notyf.js instance. */
+// eslint-disable-next-line no-undef
+const NOTIFY = new Notyf({ position: { x: "center", y: "top" }, duration: 5000 });
 
 /** Global variables and static definitions. */
 const GLOBALS = {
@@ -75,7 +81,7 @@ const COMPOSED_NOTES = [];
 const RTTTL = {
 	/** The AudioPlayer handles RTTTL playback via Web Audio API. */
 	AudioPlayer: (() => {
-		let context, noteVolume, oscillator, playbackTimeout;
+		let context, noteVolume, oscillator, gainNode, playbackTimeout;
 		let highlighterTimeouts = [];
 		let isPlaying = false;
 		let elapsedTime = 0;
@@ -91,8 +97,8 @@ const RTTTL = {
 			context = new (window.AudioContext || window.webkitAudioContext)();
 
 			// Create a gain node for volume control and connect it to the destination.
-			const gainNode = context.createGain();
-			gainNode.gain.value = 0.1; // TODO: Make this adjustable on the frontend.
+			gainNode = context.createGain();
+			gainNode.gain.value = 0.20;
 			gainNode.connect(context.destination);
 
 			// Create the oscillator and connect it to the gain node.
@@ -103,6 +109,15 @@ const RTTTL = {
 			oscillator = context.createOscillator();
 			oscillator.start(0); // Start immediately (but muted).
 			oscillator.connect(noteVolume);
+		};
+
+		/**
+		 * Sets the playback volume level.
+		 * @param {number} volume The volume level to set.
+		 */
+		const setVolume = (volume) => {
+			if (!context) init(); // Initialize the audio context if not already done.
+			gainNode.gain.value = volume / 100;
 		};
 
 		/**
@@ -188,7 +203,7 @@ const RTTTL = {
 			ELEMENTS.BUTTON.LOAD_FROM_TEXTAREA.attr("disabled", false);
 		};
 
-		return { start, stop, isPlaying: () => isPlaying };
+		return { start, stop, setVolume, isPlaying: () => isPlaying };
 	})(),
 
 	/** The RTTTL player settings and state. */
@@ -322,7 +337,7 @@ function loadFromTextArea() {
 	console.debug(`@loadFromTextArea(): Loading RTTTL string '${loadedNoteText}'..`);
 
 	const RTTTLSections = loadedNoteText.split(":");
-	if (RTTTLSections.length < 3) return console.error(`Invalid RTTTL string, expected 3 sections but got ${RTTTLSections.length}.`);
+	if (RTTTLSections.length < 3) return NOTIFY.error(`Invalid RTTTL string, expected 3 sections but only found ${RTTTLSections.length}.`);
 
 	/**
 	 * [Section 1]
@@ -346,17 +361,17 @@ function loadFromTextArea() {
 
 	// Validate that all required settings are present.
 	if (!toneSettings.d || !GLOBALS.DURATION_VALUES.includes(toneSettings.d)) {
-		console.warn(`@loadFromTextArea(): Missing or invalid default duration (d=${toneSettings.d}) setting, using default.`);
+		NOTIFY.error(`Missing or invalid default duration setting (d=${toneSettings.d}), using default.`);
 		toneSettings.d = GLOBALS.DEFAULT.DURATION;
 	}
 
 	if (!toneSettings?.o || !GLOBALS.OCTAVE_VALUES.includes(toneSettings.o)) {
-		console.warn(`@loadFromTextArea(): Missing or invalid default octave (o=${toneSettings.o}) setting, using default.`);
+		NOTIFY.error(`Missing or invalid default octave setting (o=${toneSettings.o}), using default.`);
 		toneSettings.o = GLOBALS.DEFAULT.OCTAVE;
 	}
 
 	if (!toneSettings?.b) {
-		console.warn(`@loadFromTextArea(): Missing default BPM (b=${toneSettings.b}) setting, using default.`);
+		NOTIFY.error(`Missing default BPM (b=${toneSettings.b}) setting, using default.`);
 		toneSettings.b = GLOBALS.DEFAULT.BPM;
 	}
 
@@ -378,6 +393,9 @@ function loadFromTextArea() {
 	 * Parse the note data and load it into the composer table.
 	 */
 	const notesData = RTTTLSections[2].toLowerCase().replace(/\s/g, "");
+
+	// Validate that note data is present.
+	if (notesData.length === 0) return NOTIFY.error("No note data was found in the RTTTL string to load!");
 
 	notesData.split(/[,;]/).forEach((tone, i) => {
 		let match = tone
@@ -517,6 +535,13 @@ $(() => {
 	ELEMENTS.BUTTON.PLAY.on("click", RTTTL.AudioPlayer.start); // Start playback.
 	ELEMENTS.BUTTON.STOP.on("click", RTTTL.AudioPlayer.stop); // Stop playback.
 	ELEMENTS.BUTTON.LOAD_FROM_TEXTAREA.on("click", loadFromTextArea); // Load RTTTL from text area.
+
+	// Volume slider.
+	ELEMENTS.BUTTON.VOLUME.on("input", () => {
+		const newVolume = +ELEMENTS.BUTTON.VOLUME.val();
+		RTTTL.AudioPlayer.setVolume(newVolume);
+		ELEMENTS.VOLUME_TEXT.text(`${newVolume}%`);
+	});
 
 	/*========================================================================
 	# 							Keybind Event Listeners 					 #

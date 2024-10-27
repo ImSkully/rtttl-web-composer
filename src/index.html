@@ -18,8 +18,9 @@
 		<link rel="shortcut icon" href="images/icon.png" />
 
 		<!-- [CSS] -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="css/style.css" />
 
 		<title>RTTTL Web Composer</title>
@@ -43,14 +44,20 @@
 							<ul class="navbar-nav">
 								<!-- Home -->
 								<li class="nav-item active">
-									<a class="nav-link" href="#">
-										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-music"></i></span>
+									<a class="nav-link" href="index.html">
+										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="icon ti ti-music"></i></span>
 										<span class="nav-link-title">RTTTL Composer</span>
 									</a>
 								</li>
 								<li class="nav-item">
+									<a class="nav-link" href="rtttl_specification.html">
+										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="icon ti ti-question-mark"></i></span>
+										<span class="nav-link-title">What is RTTTL?</span>
+									</a>
+								</li>
+								<li class="nav-item">
 									<a class="nav-link" href="https://github.com/ImSkully/rtttl-web-composer" target="_blank">
-										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-brand-github"></i></span>
+										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="icon ti ti-brand-github"></i></span>
 										<span class="nav-link-title">Source</span>
 									</a>
 								</li>
@@ -59,10 +66,10 @@
 								<div class="d-md-flex">
 									<!-- Theme Switch Buttons -->
 									<a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable Dark Mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
-										<i class="ti ti-sun"></i>
+										<i class="icon ti ti-sun"></i>
 									</a>
 									<a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable Light Mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
-										<i class="ti ti-moon"></i>
+										<i class="icon ti ti-moon"></i>
 									</a>
 								</div>
 							</div>
@@ -118,10 +125,30 @@
 												<th>C</th>
 											</tr>
 											<tr>
-												<th>d</th>
+												<th>
+													<span
+														class="form-help mx-1"
+														data-bs-toggle="popover"
+														data-bs-placement="top"
+														data-bs-html="true"
+														data-bs-content="Controls the duration for individual notes, any column with <code>d</code> will use the default <strong>Duration</strong> that is set below."
+														>?</span
+													>
+													d
+												</th>
 											</tr>
 											<tr>
-												<th>o</th>
+												<th>
+													<span
+														class="form-help mx-1"
+														data-bs-toggle="popover"
+														data-bs-placement="top"
+														data-bs-html="true"
+														data-bs-content="Adjust the octave (pitch) for individual notes, any column with <code>o</code> will use the default <strong>Octave</strong> that is set below."
+														>?</span
+													>
+													o
+												</th>
 											</tr>
 										</tbody>
 									</table>
@@ -146,7 +173,16 @@
 												<input type="range" class="form-range mt-2" value="63" min="5" max="900" id="bpm-slider" />
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control disabled" id="bpm-input" value="63" readonly />
+												<input
+													data-bs-toggle="tooltip"
+													data-bs-placement="top"
+													title="Use left slider to adjust"
+													type="text"
+													class="form-control disabled"
+													id="bpm-input"
+													value="63"
+													readonly
+												/>
 											</div>
 										</div>
 									</div>
@@ -182,7 +218,7 @@
 										<div class="my-3">
 											<label class="form-label" for="rtttl-output-textbox">RTTTL Output</label>
 											<div class="input-icon mb-3">
-												<span class="input-icon-addon"><i class="ti ti-music"></i></span>
+												<span class="input-icon-addon"><i class="icon ti ti-music"></i></span>
 												<input type="text" class="form-control font-terminal" id="rtttl-output-textbox" placeholder="song_name:d=4,o=5,b=140:..." />
 											</div>
 										</div>
@@ -196,66 +232,31 @@
 												<!-- Play Button -->
 												<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-play" autocomplete="off" />
 												<label for="radio-toolbar-play" class="btn btn-success">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"
-													>
-														<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-														<path d="M7 4v16l13 -8z" />
-													</svg>
+													<i class="icon ti ti-player-play"></i>
 													Play
 												</label>
 												<!-- Stop Button -->
 												<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-stop" autocomplete="off" disabled="disabled" />
 												<label for="radio-toolbar-stop" class="btn btn-danger">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														class="icon icon-tabler icons-tabler-outline icon-tabler-player-stop"
-													>
-														<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-														<path d="M5 5m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
-													</svg>
+													<i class="icon ti ti-player-stop"></i>
 													Stop
 												</label>
+
 												<!-- Load From Text Area Button -->
 												<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-load-from-textarea" autocomplete="off" />
 												<label for="radio-toolbar-load-from-textarea" class="btn btn-info">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														class="icon icon-tabler icons-tabler-outline icon-tabler-book-upload"
-													>
-														<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-														<path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5" />
-														<path d="M11 16h-5a2 2 0 0 0 -2 2" />
-														<path d="M15 16l3 -3l3 3" />
-														<path d="M18 13v9" />
-													</svg>
+													<i class="icon ti ti-book-upload"></i>
 													Load From Text Area
 												</label>
+
+												<!-- Volume Button -->
+												<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" autocomplete="off">
+													<i class="icon ti ti-volume"></i>
+													<div class="dropdown-menu p-2">
+														<label class="form-label text-center" id="radio-toolbar-slider-volume-text" for="radio-toolbar-slider-volume">20%</label>
+														<input type="range" class="form-range" value="20" min="0" max="100" id="radio-toolbar-slider-volume" />
+													</div>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -294,8 +295,9 @@
 		</div>
 
 		<!-- Scripts -->
-		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="js/main.js"></script>
 		<script src="js/theme.js"></script>
 	</body>
