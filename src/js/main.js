@@ -20,6 +20,10 @@ const ELEMENTS = {
 	}
 };
 
+/** Notyf.js instance. */
+// eslint-disable-next-line no-undef
+const NOTIFY = new Notyf({ position: { x: "center", y: "top" }, duration: 5000 });
+
 /** Global variables and static definitions. */
 const GLOBALS = {
 	/** The number of note columns to create within the composer table. */
@@ -322,7 +326,7 @@ function loadFromTextArea() {
 	console.debug(`@loadFromTextArea(): Loading RTTTL string '${loadedNoteText}'..`);
 
 	const RTTTLSections = loadedNoteText.split(":");
-	if (RTTTLSections.length < 3) return console.error(`Invalid RTTTL string, expected 3 sections but got ${RTTTLSections.length}.`);
+	if (RTTTLSections.length < 3) return NOTIFY.error(`Invalid RTTTL string, expected 3 sections but only found ${RTTTLSections.length}.`);
 
 	/**
 	 * [Section 1]
@@ -346,17 +350,17 @@ function loadFromTextArea() {
 
 	// Validate that all required settings are present.
 	if (!toneSettings.d || !GLOBALS.DURATION_VALUES.includes(toneSettings.d)) {
-		console.warn(`@loadFromTextArea(): Missing or invalid default duration (d=${toneSettings.d}) setting, using default.`);
+		NOTIFY.error(`Missing or invalid default duration setting (d=${toneSettings.d}), using default.`);
 		toneSettings.d = GLOBALS.DEFAULT.DURATION;
 	}
 
 	if (!toneSettings?.o || !GLOBALS.OCTAVE_VALUES.includes(toneSettings.o)) {
-		console.warn(`@loadFromTextArea(): Missing or invalid default octave (o=${toneSettings.o}) setting, using default.`);
+		NOTIFY.error(`Missing or invalid default octave setting (o=${toneSettings.o}), using default.`);
 		toneSettings.o = GLOBALS.DEFAULT.OCTAVE;
 	}
 
 	if (!toneSettings?.b) {
-		console.warn(`@loadFromTextArea(): Missing default BPM (b=${toneSettings.b}) setting, using default.`);
+		NOTIFY.error(`Missing default BPM (b=${toneSettings.b}) setting, using default.`);
 		toneSettings.b = GLOBALS.DEFAULT.BPM;
 	}
 
@@ -378,6 +382,9 @@ function loadFromTextArea() {
 	 * Parse the note data and load it into the composer table.
 	 */
 	const notesData = RTTTLSections[2].toLowerCase().replace(/\s/g, "");
+
+	// Validate that note data is present.
+	if (notesData.length === 0) return NOTIFY.error("No note data was found in the RTTTL string to load!");
 
 	notesData.split(/[,;]/).forEach((tone, i) => {
 		let match = tone
