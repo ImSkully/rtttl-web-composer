@@ -28,7 +28,7 @@ export default function ThemeButton() {
 			data-bs-placement="bottom"
 			data-bs-original-title={`Switch to ${theme.value === Theme.Dark ? "light" : "dark"} theme`}
 		>
-			<i class={`icon ti ${theme.value === Theme.Dark ? "ti-moon" : "ti-sun"}`}></i>
+			<i class={`icon ti ${theme.value === Theme.Dark ? "ti-sun" : "ti-moon"}`}></i>
 		</a>
 	);
 }
