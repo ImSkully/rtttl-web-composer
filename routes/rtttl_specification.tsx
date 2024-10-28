@@ -45,6 +45,7 @@ export default async function RTTTLSpecification() {
 										<pre><span class="text-red">{rtttl_example_string[0]}</span>:<span class="text-yellow">{rtttl_example_string[1]}</span>:<span class="text-green">{rtttl_example_string[2]}</span></pre>
 									</p>
 								</div>
+								{/* Table of Contents */}
 								<div class="col-4">
 									<div class="card">
 										<div class="card-body">
