@@ -13,7 +13,7 @@ export default function App(props: PageProps) {
 				<meta name="author" content="Skully" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-				<meta property="og:image" content={asset("images/icon.png")} />
+				<meta property="og:image" content={asset("images/logos/icon.png")} />
 				<meta property="og:image:type" content="image/png" />
 				<meta property="og:image:width" content="64" />
 				<meta property="og:image:height" content="64" />
@@ -21,7 +21,7 @@ export default function App(props: PageProps) {
 
 				{/* Favicon */}
 				<link rel="icon" type="image/x-icon" href={asset("favicon.ico")} />
-				<link rel="shortcut icon" href={asset("images/icon.png")} />
+				<link rel="shortcut icon" href={asset("images/logos/icon.png")} />
 
 				{/* CSS. */}
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
