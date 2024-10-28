@@ -1,6 +1,8 @@
 import { Head } from "$fresh/runtime.ts";
 
 export default function Home() {
+	const notes = ["B", "A#", "A", "G#", "G", "F#", "F", "E", "D#", "D", "C#", "C"];
+
 	return (
 		<>
 			<Head>
@@ -14,42 +16,11 @@ export default function Home() {
 						<div class="col-1 bg-primary">
 							<table class="table card-table header-table">
 								<tbody>
-									<tr>
-										<th>B</th>
-									</tr>
-									<tr>
-										<th>A#</th>
-									</tr>
-									<tr>
-										<th>A</th>
-									</tr>
-									<tr>
-										<th>G#</th>
-									</tr>
-									<tr>
-										<th>G</th>
-									</tr>
-									<tr>
-										<th>F#</th>
-									</tr>
-									<tr>
-										<th>F</th>
-									</tr>
-									<tr>
-										<th>E</th>
-									</tr>
-									<tr>
-										<th>D#</th>
-									</tr>
-									<tr>
-										<th>D</th>
-									</tr>
-									<tr>
-										<th>C#</th>
-									</tr>
-									<tr>
-										<th>C</th>
-									</tr>
+									{notes.map((note) => (
+										<tr key={note}>
+											<th>{note}</th>
+										</tr>
+									))}
 									<tr>
 										<th>
 											<span
