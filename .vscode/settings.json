@@ -1,11 +1,21 @@
 {
 	"editor.formatOnSave": true,
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
+	"deno.enable": true,
+	"deno.lint": true,
+	"editor.defaultFormatter": "denoland.vscode-deno",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
 	},
-	"editor.tabSize": 4,
-	"editor.insertSpaces": false,
-	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[typescript]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
 	}
 }

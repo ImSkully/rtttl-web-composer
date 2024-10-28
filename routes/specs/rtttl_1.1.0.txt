@@ -1,0 +1,96 @@
+;
+; Ringing Tones text transfer language (RTTTL)
+;
+; Version 1.1 / 13-Aug-1999
+; - Updated by The TDD for strict conformity 
+;   with Nokia Smart Messaging 2.0 Specification
+;
+; http://www.binet.lv/personal/nokia/note_syntax_1-1.txt
+;
+; Version 1.0 / 29-July-1998
+; - First version by John Mostelo
+; 
+; http://members.tripod.com/~ringtones/note_syntax.txt
+;
+
+<ringing-tones-text-transfer-language> :=
+       <name> <sep> [<defaults>] <sep> <note-command>+
+
+<name> := <char>+    ; maximum name length 11 characters
+
+<sep> := ":"
+
+<defaults> := 
+      <def-note-duration> |
+      <def-note-scale> |
+      <def-beats> |
+      <def-volume> |
+      <def-style>
+
+<def-note-duration> := "d=" <duration>
+
+<def-note-scale> := "o=" <scale> 
+
+<def-beats> := "b=" <beats-per-minute>
+
+<def-volume> := "v=" <volume>
+
+<def-style> := "s=" <style>
+
+<beats-per-minute> := 25,28,...,900   ; decimal value
+
+<volume> := 0..15 ; 0 - no tone, 15 - maximal volume, decimal value
+
+<style> := 1 |	; normal
+           2 |	; continuous
+           3	; staccato
+
+; If not specified, defaults are
+;
+;  4   = duration
+;  5   = scale   
+;  63  = beats-per-minute
+;  7   = volume
+;  1   = style
+
+<note-command> :=
+      [<duration>] <note> [<scale>] [<special-duration>] <delimiter>
+
+<duration> :=
+      "1"  |  ; Full 1/1 note
+      "2"  |  ; 1/2 note
+      "4"  |  ; 1/4 note
+      "8"  |  ; 1/8 note
+      "16" |  ; 1/16 note
+      "32" |  ; 1/32 note
+     
+<note> :=
+      "P"  |  ; pause
+      "C"  |
+      "C#" |
+      "D"  |
+      "D#" |
+      "E"  |
+      "F"  |
+      "F#" |
+      "G"  |
+      "G#" |
+      "A"  |
+      "A#" |
+      "B"  |
+      "H"         
+
+<scale> :=
+      "4" |   ; Note A is 440Hz
+      "5" |   ; Note A is 880Hz
+      "6" |   ; Note A is 1.76 kHz
+      "7"     ; Note A is 3.52 kHz
+
+<special-duration> :=
+	"." |	; Dotted note
+	";" |	; Double dotted note
+	"&" 	; 2/3 length
+
+<delimiter> := ","
+
+; End of specification
