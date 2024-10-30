@@ -31,7 +31,7 @@ export default function App(props: PageProps) {
 				<title>RTTTL Web Composer</title>
 			</head>
 
-			<body>
+			<body class="theme-dark">
 				<div class="page">
 					<Navbar {...props} />
 
