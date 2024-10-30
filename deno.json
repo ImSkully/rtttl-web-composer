@@ -21,6 +21,7 @@
 	"compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
 	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
 	"fmt": {
+		"exclude": ["*.md"],
 		"useTabs": true,
 		"lineWidth": 180,
 		"indentWidth": 4,
