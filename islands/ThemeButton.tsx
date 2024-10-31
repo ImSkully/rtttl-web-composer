@@ -1,5 +1,5 @@
-import { useSignal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import { useEffect, useState } from "preact/hooks";
 
 enum Theme {
 	Dark = "theme-dark",
@@ -10,22 +10,22 @@ const ThemeStorageKey = "rtttl_theme";
 const DefaultTheme = Theme.Dark;
 
 export default function ThemeButton() {
-	const theme = useSignal<Theme>(localStorage.getItem(ThemeStorageKey) as Theme || DefaultTheme);
+	const [theme, setTheme] = useState<Theme>(IS_BROWSER ? localStorage.getItem(ThemeStorageKey) as Theme || DefaultTheme : DefaultTheme);
 
 	useEffect(() => {
-		document.body.className = theme.value;
-		localStorage.setItem(ThemeStorageKey, theme.value);
-	}, [theme.value]);
+		document.body.className = theme;
+		localStorage.setItem(ThemeStorageKey, theme);
+	}, [theme]);
 
 	return (
 		<a
-			onClick={() => theme.value = theme.value === Theme.Dark ? Theme.Light : Theme.Dark}
+			onClick={() => setTheme(theme === Theme.Dark ? Theme.Light : Theme.Dark)}
 			class="nav-link px-0"
 			data-bs-toggle="tooltip"
 			data-bs-placement="bottom"
-			data-bs-original-title={`Switch to ${theme.value === Theme.Dark ? "light" : "dark"} theme`}
+			data-bs-original-title={`Switch to ${theme === Theme.Dark ? "light" : "dark"} theme`}
 		>
-			<i class={`icon ti ${theme.value === Theme.Dark ? "ti-sun" : "ti-moon"}`}></i>
+			<i class={`icon ti ${theme === Theme.Dark ? "ti-sun" : "ti-moon"}`}></i>
 		</a>
 	);
 }
