@@ -159,7 +159,7 @@ export default function Home() {
 										</label>
 
 										{/* Volume Button */}
-										<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" autocomplete="off">
+										<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" aria-label="volume-button" autocomplete="off">
 											<i class="icon ti ti-volume"></i>
 											<div class="dropdown-menu p-2">
 												<label class="form-label text-center" id="radio-toolbar-slider-volume-text" for="radio-toolbar-slider-volume">20%</label>

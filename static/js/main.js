@@ -232,13 +232,13 @@ function createComposerTable() {
 	const dropdownOptions = {
 		duration: (id) =>
 			`
-		<select id="duration-note-${id}" class="form-select-sm">
+		<select id="duration-note-${id}" class="form-select-sm" aria-label="Note ${id} Duration">
 			<option selected value="0">d</option>
 			` + GLOBALS.DURATION_VALUES.map((v) => `<option value="${v}">${v}</option>`).join("") + `
 		</select>`,
 		octave: (id) =>
 			`
-		<select id="octave-note-${id}" class="form-select-sm w-100">
+		<select id="octave-note-${id}" class="form-select-sm w-100" aria-label="Note ${id} Octave">
 			<option selected value="0">o</option>
 			` + GLOBALS.OCTAVE_VALUES.map((v) => `<option value="${v}">${v}</option>`).join("") + `
 		</select>`,

@@ -36,11 +36,13 @@ export default function App(props: PageProps) {
 					<Navbar {...props} />
 
 					{/* Page Content */}
-					<div class="page-wrapper">
-						<div class="page-body">
-							<props.Component />
+					<main>
+						<div class="page-wrapper">
+							<div class="page-body">
+								<props.Component />
+							</div>
 						</div>
-					</div>
+					</main>
 
 					<Footer />
 				</div>
