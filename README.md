@@ -1,21 +1,17 @@
-<p align="center">
+<div align="center">
 	<a href="https://rtttl.skully.tech" target="_blank">
-		<picture>
-			<img width="150" height="150" src="./static/images/logos/logo_400px.png" alt="RTTTL Web Composer Logo">
-		</picture>
+		<img width="150" height="150" src="./static/images/logos/logo_400px.png" alt="RTTTL Web Composer Logo" />
 	</a>
-</p>
-<h1 align="center">
-	RTTTL Web Composer
-</h1>
+	<h1>RTTTL Web Composer</h1>
+</div>
 
 <p align="center">
-	<img alt="Deno Badge" src="https://img.shields.io/badge/Deno-js?style=flat&logo=deno&logoColor=white&color=black&link=https%3A%2F%2Fdeno.com" />
-	<img alt="Deno Fresh Badge" src="https://img.shields.io/badge/Fresh-js?style=flat&logo=fresh&logoColor=yellow&color=black&link=https%3A%2F%2Ffresh.deno.dev" />
+	<a href="https://deno.com" target="_blank"><img alt="Deno Badge" src="https://img.shields.io/badge/Deno-js?style=flat&logo=deno&logoColor=white&color=black" /></a>
+	<a href="https://fresh.deno.dev" target="_blank"><img alt="Deno Fresh Badge" src="https://img.shields.io/badge/Fresh-js?style=flat&logo=fresh&logoColor=yellow&color=black" /></a>
 </p>
 <p align="center">
 	<a href="./LICENSE" alt="Project License"><img src="https://img.shields.io/github/license/ImSkully/rtttl-web-composer" alt="License Badge" /></a>
-	<img alt="Discord Badge" src="https://img.shields.io/badge/on_discord-chat?style=flat&logo=discord&logoColor=%235865f2&label=chat&color=%235865f2&link=https%3A%2F%2Fdiscord.skully.tech" />
+	<a href="https://skully.tech/discord" target="_blank"><img alt="Discord Badge" src="https://img.shields.io/badge/on_discord-chat?style=flat&logo=discord&logoColor=%235865f2&label=chat&color=%235865f2" /></a>
 	<a href="https://rtttl.skully.tech" target="_blank"><img src="https://img.shields.io/static/v1?label=Demo&message=Preview&color=228be6" alt="Open Web Application" /></a>
 </p>
 
