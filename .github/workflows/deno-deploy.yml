@@ -1,0 +1,34 @@
+name: Deploy
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Build Step
+        run: "deno task build"
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: ${{ secrets.DENO_DEPLOY_PROJECT }}
+          entrypoint: main.ts
+          exclude: node_modules
