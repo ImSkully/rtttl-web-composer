@@ -11,7 +11,7 @@
 </p>
 <p align="center">
 	<a href="./LICENSE" alt="Project License"><img src="https://img.shields.io/github/license/ImSkully/rtttl-web-composer" alt="License Badge" /></a>
-	<a href="https://discord.skully.tech" target="_blank"><img alt="Discord Badge" src="https://img.shields.io/badge/on_discord-chat?style=flat&logo=discord&logoColor=%235865f2&label=chat&color=%235865f2" /></a>
+	<a href="https://skully.tech/discord" target="_blank"><img alt="Discord Badge" src="https://img.shields.io/badge/on_discord-chat?style=flat&logo=discord&logoColor=%235865f2&label=chat&color=%235865f2" /></a>
 	<a href="https://rtttl.skully.tech" target="_blank"><img src="https://img.shields.io/static/v1?label=Demo&message=Preview&color=228be6" alt="Open Web Application" /></a>
 </p>
 
