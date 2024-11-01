@@ -1,13 +1,9 @@
-<p align="center">
+<div align="center">
 	<a href="https://rtttl.skully.tech" target="_blank">
-		<picture>
-			<img width="150" height="150" src="./static/images/logos/logo_400px.png" alt="RTTTL Web Composer Logo">
-		</picture>
+		<img width="150" height="150" src="./static/images/logos/logo_400px.png" alt="RTTTL Web Composer Logo" />
 	</a>
-</p>
-<h1 align="center">
-	RTTTL Web Composer
-</h1>
+	<h1>RTTTL Web Composer</h1>
+</div>
 
 <p align="center">
 	<a href="https://deno.com" target="_blank"><img alt="Deno Badge" src="https://img.shields.io/badge/Deno-js?style=flat&logo=deno&logoColor=white&color=black" /></a>
