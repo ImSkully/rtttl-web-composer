@@ -18,8 +18,8 @@ const ELEMENTS = {
 		PLAY: $("#radio-toolbar-play"),
 		STOP: $("#radio-toolbar-stop"),
 		LOAD_FROM_TEXTAREA: $("#radio-toolbar-load-from-textarea"),
-		VOLUME: $("#radio-toolbar-slider-volume")
-	}
+		VOLUME: $("#radio-toolbar-slider-volume"),
+	},
 };
 
 /** Notyf.js instance. */
@@ -44,11 +44,7 @@ const GLOBALS = {
 	OCTAVE_VALUES: [4, 5, 6, 7],
 
 	/** RTTTL note BPM values. */
-	BPM_VALUES: [
-		5, 28, 31, 35, 40, 45, 50, 56, 63, 70, 80, 90, 100,
-		112, 125, 140, 160, 180, 200, 225, 250, 285, 320, 355,
-		400, 450, 500, 565, 635, 715, 800, 900
-	],
+	BPM_VALUES: [5, 28, 31, 35, 40, 45, 50, 56, 63, 70, 80, 90, 100, 112, 125, 140, 160, 180, 200, 225, 250, 285, 320, 355, 400, 450, 500, 565, 635, 715, 800, 900],
 
 	/**
 	 * Default control values, adopted from the RTTTL standard:
@@ -94,7 +90,7 @@ const RTTTL = {
 			if (context) return; // Already initialized.
 
 			// Initialize the audio context.
-			context = new (window.AudioContext || window.webkitAudioContext)();
+			context = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
 
 			// Create a gain node for volume control and connect it to the destination.
 			gainNode = context.createGain();
@@ -187,7 +183,7 @@ const RTTTL = {
 			clearTimeout(playbackTimeout);
 
 			// Clear all highlight timeouts to stop highlighting after playback is stopped.
-			highlighterTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+			highlighterTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
 			highlighterTimeouts = [];
 
 			const currentTime = context.currentTime;
@@ -212,8 +208,8 @@ const RTTTL = {
 		BPM: GLOBALS.DEFAULT.BPM,
 		OCTAVE: GLOBALS.DEFAULT.OCTAVE,
 		SONG_NAME: "Untitled",
-		STRING_OUTPUT: ""
-	}
+		STRING_OUTPUT: "",
+	},
 };
 
 /**
@@ -234,16 +230,18 @@ function createComposerTable() {
 
 	// Dropdown generators.
 	const dropdownOptions = {
-		duration: id => `
-		<select id="duration-note-${id}" class="form-select-sm">
+		duration: (id) =>
+			`
+		<select id="duration-note-${id}" class="form-select-sm" aria-label="Note ${id} Duration">
 			<option selected value="0">d</option>
-			` + GLOBALS.DURATION_VALUES.map(v => `<option value="${v}">${v}</option>`).join("") + `
+			` + GLOBALS.DURATION_VALUES.map((v) => `<option value="${v}">${v}</option>`).join("") + `
 		</select>`,
-		octave: id => `
-		<select id="octave-note-${id}" class="form-select-sm w-100">
+		octave: (id) =>
+			`
+		<select id="octave-note-${id}" class="form-select-sm w-100" aria-label="Note ${id} Octave">
 			<option selected value="0">o</option>
-			` + GLOBALS.OCTAVE_VALUES.map(v => `<option value="${v}">${v}</option>`).join("") + `
-		</select>`
+			` + GLOBALS.OCTAVE_VALUES.map((v) => `<option value="${v}">${v}</option>`).join("") + `
+		</select>`,
 	};
 
 	// Assemble the full table grid and append it to the composer table.
@@ -263,8 +261,8 @@ function resetComposerTable() {
 	ELEMENTS.COMPOSER_TABLE.find(".tone-enabled").removeClass("tone-enabled"); // Clear all enabled note cells.
 	if (RTTTL.AudioPlayer.isPlaying()) RTTTL.AudioPlayer.stop(); // If playback is active, stop it.
 
-	$("[id^=\"duration-note-\"]").prop("selectedIndex", 0); // Reset all note duration dropdowns.
-	$("[id^=\"octave-note-\"]").prop("selectedIndex", 0); // Reset all note octave dropdowns.
+	$('[id^="duration-note-"]').prop("selectedIndex", 0); // Reset all note duration dropdowns.
+	$('[id^="octave-note-"]').prop("selectedIndex", 0); // Reset all note octave dropdowns.
 }
 
 /**
@@ -297,7 +295,7 @@ function generateRTTTL() {
 					column: i,
 					note: GLOBALS.PAUSE_NOTE,
 					duration: pauseDuration,
-					octave: 0 // Octave for pause is always 0.
+					octave: 0, // Octave for pause is always 0.
 				};
 			}
 		}
@@ -356,7 +354,7 @@ function loadFromTextArea() {
 			.toLowerCase()
 			.replace(/\s/g, "")
 			.split(",")
-			.map(e => e.split("=").map((v, i) => (i === 1 ? parseInt(v) : v)))
+			.map((e) => e.split("=").map((v, i) => (i === 1 ? parseInt(v) : v))),
 	);
 
 	// Validate that all required settings are present.
@@ -398,14 +396,14 @@ function loadFromTextArea() {
 	if (notesData.length === 0) return NOTIFY.error("No note data was found in the RTTTL string to load!");
 
 	notesData.split(/[,;]/).forEach((tone, i) => {
-		let match = tone
+		const match = tone
 			.replace(/\./g, "") // Remove dot notations (not currently supported).
 			.match(/^(1|2|4|8|16|32)?(P|C|C#|D|D#|E|F|F#|G|G#|A|A#|B)(4|5|6|7)?$/i); // Match note data.
 
 		// If no match, log a warning and skip this note.
 		if (!match) return console.warn(`[PARSE] Invalid note: ${tone}`);
 
-		let [raw, duration, note, octave] = match;
+		const [raw, duration, note, octave] = match;
 
 		// Set the note duration and octave if provided.
 		if (duration) $(`#duration-note-${i}`).val(duration);
@@ -506,7 +504,7 @@ $(() => {
 
 	// Table cell click event listener.
 	ELEMENTS.COMPOSER_TABLE.on("click", "td, th", function (e) {
-		let note = $(e.target);
+		const note = $(e.target);
 		if (note.html() !== "") return; // Only listen for clicks on note cells.
 
 		// Clear all other notes in this column.
@@ -516,8 +514,12 @@ $(() => {
 	});
 
 	// Duration and octave dropdown selectors, extracts the note index from the ID.
-	$(document).on("change", "[id^=\"duration-note-\"]", function () { setDuration($(this).val(), $(this).attr("id").split("-")[2]); });
-	$(document).on("change", "[id^=\"octave-note-\"]", function () { setOctave($(this).val(), $(this).attr("id").split("-")[2]); });
+	$(document).on("change", '[id^="duration-note-"]', function () {
+		setDuration($(this).val(), $(this).attr("id").split("-")[2]);
+	});
+	$(document).on("change", '[id^="octave-note-"]', function () {
+		setOctave($(this).val(), $(this).attr("id").split("-")[2]);
+	});
 
 	// Global octave selector.
 	ELEMENTS.OCTAVE_SELECTOR.on("change", () => {
@@ -531,7 +533,9 @@ $(() => {
 		generateRTTTL();
 	});
 
-	ELEMENTS.BPM_SLIDER.on("input", () => { setBPM(ELEMENTS.BPM_SLIDER.val()); }); // BPM slider.
+	ELEMENTS.BPM_SLIDER.on("input", () => {
+		setBPM(ELEMENTS.BPM_SLIDER.val());
+	}); // BPM slider.
 	ELEMENTS.BUTTON.PLAY.on("click", RTTTL.AudioPlayer.start); // Start playback.
 	ELEMENTS.BUTTON.STOP.on("click", RTTTL.AudioPlayer.stop); // Stop playback.
 	ELEMENTS.BUTTON.LOAD_FROM_TEXTAREA.on("click", loadFromTextArea); // Load RTTTL from text area.
@@ -558,30 +562,26 @@ $(() => {
 			e.preventDefault();
 			if (RTTTL.AudioPlayer.isPlaying()) RTTTL.AudioPlayer.stop(); // Stop playback.
 			else RTTTL.AudioPlayer.start(); // Start playback.
-		}
-		// O (79): Cycle through octaves.
+		} // O (79): Cycle through octaves.
 		else if (pressedKey === "o") {
 			if (RTTTL.PLAYER.OCTAVE < GLOBALS.OCTAVE_VALUES[GLOBALS.OCTAVE_VALUES.length - 1]) RTTTL.PLAYER.OCTAVE++;
 			else RTTTL.PLAYER.OCTAVE = GLOBALS.OCTAVE_VALUES[0];
 			ELEMENTS.OCTAVE_SELECTOR.val(RTTTL.PLAYER.OCTAVE);
 			generateRTTTL();
-		}
-		// D (68): Cycle through durations.
+		} // D (68): Cycle through durations.
 		else if (pressedKey === "d") {
 			if (RTTTL.PLAYER.DURATION < GLOBALS.DURATION_VALUES[GLOBALS.DURATION_VALUES.length - 1]) RTTTL.PLAYER.DURATION *= 2;
 			else RTTTL.PLAYER.DURATION = GLOBALS.DURATION_VALUES[0];
 			ELEMENTS.DURATION_SELECTOR.val(RTTTL.PLAYER.DURATION);
 			generateRTTTL();
-		}
-		// V (86): Decrease BPM.
+		} // V (86): Decrease BPM.
 		else if (pressedKey === "v" && RTTTL.PLAYER.BPM > 5) {
 			const currentIndex = GLOBALS.BPM_VALUES.indexOf(RTTTL.PLAYER.BPM);
 			if (currentIndex !== -1 && currentIndex > 0) {
 				const previousBPM = GLOBALS.BPM_VALUES[currentIndex - 1];
 				setBPM(previousBPM);
 			}
-		}
-		// B (66): Increase BPM.
+		} // B (66): Increase BPM.
 		else if (pressedKey === "b") {
 			const currentIndex = GLOBALS.BPM_VALUES.indexOf(RTTTL.PLAYER.BPM);
 			if (currentIndex !== -1 && currentIndex < GLOBALS.BPM_VALUES.length - 1) {

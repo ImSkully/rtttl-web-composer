@@ -1,8 +1,5 @@
 {
 	"recommendations": [
-		"formulahendry.auto-close-tag",
-		"formulahendry.auto-complete-tag",
-		"formulahendry.auto-rename-tag",
-		"esbenp.prettier-vscode"
+		"denoland.vscode-deno"
 	]
 }
