@@ -60,7 +60,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div class="card mt-3">
+				<div class="card my-3">
 					<div class="card-body">
 						{/* Controls Row */}
 						<div class="row">
@@ -77,7 +77,7 @@ export default function Home() {
 										<input
 											data-bs-toggle="tooltip"
 											data-bs-placement="top"
-											title="Use left slider to adjust"
+											title="Use slider to adjust"
 											type="text"
 											class="form-control disabled"
 											id="bpm-input"
@@ -118,55 +118,58 @@ export default function Home() {
 						</div>
 
 						{/* RTTTL Output Text Area */}
-						<div class="row">
-							<div class="col-8">
-								<div class="my-3">
-									<label class="form-label" for="rtttl-output-textbox">RTTTL Output</label>
-									<div class="input-icon mb-3">
-										<span class="input-icon-addon">
-											<i class="icon ti ti-music"></i>
-										</span>
-										<input type="text" class="form-control font-terminal" id="rtttl-output-textbox" placeholder="song_name:d=4,o=5,b=140:..." />
-									</div>
+						<div class="row mt-3">
+							<div class="col-6">
+								<label class="form-label" for="rtttl-output-textbox">RTTTL Output</label>
+								<div class="input-icon mb-3">
+									<span class="input-icon-addon">
+										<i class="icon ti ti-music"></i>
+									</span>
+									<input type="text" class="form-control font-terminal" id="rtttl-output-textbox" placeholder="song_name:d=4,o=5,b=140:..." />
 								</div>
+							</div>
+							<div class="col-2">
+								{/* Dropdown Example RTTTL Selector */}
+								<label class="form-label" for="rtttl-examples-selector">Example Ringtones</label>
+								<select id="rtttl-examples-selector" class="form-select">
+									<option selected disabled hidden>(select a tone)</option>
+								</select>
 							</div>
 
 							{/* Playback */}
 							<div class="col-4">
-								<div class="my-3">
-									<div class="form-label">
-										Playback <kbd>Spacebar</kbd>
-									</div>
-									<div class="btn-group w-100" role="group">
-										{/* Play Button */}
-										<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-play" autocomplete="off" />
-										<label for="radio-toolbar-play" class="btn btn-success">
-											<i class="icon ti ti-player-play"></i>
-											Play
-										</label>
-										{/* Stop Button */}
-										<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-stop" autocomplete="off" disabled />
-										<label for="radio-toolbar-stop" class="btn btn-danger">
-											<i class="icon ti ti-player-stop"></i>
-											Stop
-										</label>
+								<div class="form-label">
+									Playback <kbd>Spacebar</kbd>
+								</div>
+								<div class="btn-group w-100" role="group">
+									{/* Play Button */}
+									<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-play" autocomplete="off" />
+									<label for="radio-toolbar-play" class="btn btn-success">
+										<i class="icon ti ti-player-play"></i>
+										Play
+									</label>
+									{/* Stop Button */}
+									<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-stop" autocomplete="off" disabled />
+									<label for="radio-toolbar-stop" class="btn btn-danger">
+										<i class="icon ti ti-player-stop"></i>
+										Stop
+									</label>
 
-										{/* Load From Text Area Button */}
-										<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-load-from-textarea" autocomplete="off" />
-										<label for="radio-toolbar-load-from-textarea" class="btn btn-info">
-											<i class="icon ti ti-book-upload"></i>
-											Load From Text Area
-										</label>
+									{/* Load From Text Area Button */}
+									<input type="radio" class="btn-check" name="btn-radio-toolbar" id="radio-toolbar-load-from-textarea" autocomplete="off" />
+									<label for="radio-toolbar-load-from-textarea" class="btn btn-info">
+										<i class="icon ti ti-book-upload"></i>
+										Load From Text Area
+									</label>
 
-										{/* Volume Button */}
-										<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" aria-label="volume-button" autocomplete="off">
-											<i class="icon ti ti-volume"></i>
-											<div class="dropdown-menu p-2">
-												<label class="form-label text-center" id="radio-toolbar-slider-volume-text" for="radio-toolbar-slider-volume">20%</label>
-												<input type="range" class="form-range" value="20" min="0" max="100" id="radio-toolbar-slider-volume" />
-											</div>
-										</button>
-									</div>
+									{/* Volume Button */}
+									<button class="btn btn-icon bg-azure-lt" name="btn-radio-toolbar" data-bs-toggle="dropdown" aria-label="volume-button" autocomplete="off">
+										<i class="icon ti ti-volume"></i>
+										<div class="dropdown-menu p-2">
+											<label class="form-label text-center" id="radio-toolbar-slider-volume-text" for="radio-toolbar-slider-volume">20%</label>
+											<input type="range" class="form-range" value="20" min="0" max="100" id="radio-toolbar-slider-volume" />
+										</div>
+									</button>
 								</div>
 							</div>
 						</div>

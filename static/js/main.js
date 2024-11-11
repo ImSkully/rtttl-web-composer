@@ -12,6 +12,7 @@ const ELEMENTS = {
 	OCTAVE_SELECTOR: $("#octave-selector"),
 	BPM_SLIDER: $("#bpm-slider"),
 	DURATION_SELECTOR: $("#duration-selector"),
+	EXAMPLES_SELECTOR: $("#rtttl-examples-selector"),
 	BPM_INPUT: $("#bpm-input"),
 	VOLUME_TEXT: $("#radio-toolbar-slider-volume-text"),
 	BUTTON: {
@@ -54,6 +55,25 @@ const GLOBALS = {
 
 	/** RTTTL note labels. */
 	NOTE_LABELS: ["b", "a#", "a", "g#", "g", "f#", "f", "e", "d#", "d", "c#", "c"], // Must match exactly as it appears in frontend table.
+
+	/** List of example RTTTL ringtones that can be selected in the example selector. */
+	RTTTL_EXAMPLES: [
+		"Black Bear:d=4,o=5,b=180:d#,d#,8g.,16d#,8a#.,16g,d#,d#,8g.,16d#,8a#.,16g,f,8c.,16b4,c,8f.,16d#,8d.,16d#,8c.,16d,8a#4.,16c,8d.,16a#4,d#,d#,8g.,16d#,8a#.,16g,d#,d#,8g.,16d#,8a#.,16g,f,f,f,8g.,16f,d#,g,2d#",
+		"Batman:d=8,o=5,b=180:d,d,c#,c#,c,c,c#,c#,d,d,c#,c#,c,c,c#,c#,d,d#,c,c#,c,c,c#,c#,f,p,4f",
+		"Barbie Girl:d=8,o=6,b=125:g#,e,g#,c#6,4a,4p,f#,d#,f#,b,4g#,f#,e,4p,e,c#,4f#,4c#,4p,f#,e,4g#,4f#",
+		"Bethoven:d=4,o=5,b=160:c,e,c,g,c,c6,8b,8a,8g,8a,8g,8f,8e,8f,8e,8d,c,e,g,e,c6,g.",
+		"Digimon:d=8,o=5,b=112:c,g,f#,p,16c,16c,g,f#,g,16c,16c,g,f#,g,a#,a#,4p,c,g,f#,p,16c,16c,g,f#,g,16c,16c,g,f#,d#,4c",
+		"Flintstones:d=8,o=5,b=200:g#,4c#,p,4c#6,a#,4g#,4c#,p,4g#,f#,f,f,f#,g#,4c#,4d#,2f,2p,4g#,4c#,p,4c#6,a#,4g#,4c#,p,4g#,f#,f,f,f#,g#,4c#,4d#,2c#",
+		"Flute:d=8,o=5,b=160:16a,16g,16a,16a#,c6,c6,c6,c6,c6,c6,c6,c6,4f.,4p,32f,16e,16f,16g,a,a,a,a,a,a,a,a,4d.,4p,16d,16c,16d,16e,f,f,f,c,g,g,g,c,a,f,a,c6,f6,c6,d6,a#,c6,f,a,c6,f6,c6,d6,a#,4c6,4p,4f.,f,4a4,4p,4e,4p,f,g,f,a,a#,a,f,g,f,d,e,d,c#,d,c#,a4,b4,a4,c#,d,c#,e,f,e,f,g,f,a,a#,a,f,g,f,d,e.",
+		"Funky Town:d=8,o=4,b=125:c6,c6,a#5,c6,p,g5,p,g5,c6,f6,e6,c6,2p,c6,c6,a#5,c6,p,g5,p,g5,c6,f6,e6,c6",
+		"Halloween:d=8,o=5,b=180:d6,g,g,d6,g,g,d6,g,d#6,g,d6,g,g,d6,g,g,d6,g,d#6,g,c#6,f#,f#,c#6,f#,f#,c#6,f#,d6,f#,c#6,f#,f#,c#6,f#,f#,c#6,f#,d6,f#",
+		"James Bond:d=4,o=5,b=80:32p,16c#6,32d#6,32d#6,16d#6,8d#6,16c#6,16c#6,16c#6,16c#6,32e6,32e6,16e6,8e6,16d#6,16d#6,16d#6,16c#6,32d#6,32d#6,16d#6,8d#6,16c#6,16c#6,16c#6,16c#6,32e6,32e6,16e6,8e6,16d#6,16d6,16c#6,16c#7,c.7,16g#6,16f#6,g#.6",
+		"Pager:d=8,o=5,b=160:d6,16p,2d6,16p,d6,16p,2d6,16p,d6,16p,2d6.",
+		"Rugrats:d=8,o=7,b=100:c,d,e,f.,g.,a,p,a,g,f,e.,d.,c,p,c,d,e,d.,c.,b6,p,b6,c,d,c.,b6.,a6,p,c,d,e,f.,g.,a,p,a,g,f,e.,d.,c,p,c,d,e,d.,c.,b6",
+		"Star Wars:d=8,o=6,b=180:f5,f5,f5,2a#5.,2f.,d#,d,c,2a#.,4f.,d#,d,c,2a#.,4f.,d#,d,d#,2c,4p,f5,f5,f5,2a#5.,2f.,d#,d,c,2a#.,4f.,d#,d,c,2a#.,4f.,d#,d,d#,2c",
+		"The Simpsons:d=4,o=5,b=160:2c6,e6,f#6,8a6,g6,e6,c6,8a,8f#,8f#,8f#,2g,8p,8p,8f#,8f#,8f#,8g,a#,8c6,8c6,8c6,c6",
+		"Trim Phone:d=16,o=5,b=355:a,b,a,b,a,b,a,4p,a,b,a,b,a,b,a,b,a.",
+	],
 };
 
 /*
@@ -252,6 +272,12 @@ function createComposerTable() {
             ${createDropdownRow(dropdownOptions.octave)}
         </tbody>
     `);
+
+	// Load all example RTTTL strings into the examples selector.
+	GLOBALS.RTTTL_EXAMPLES.forEach((example) => {
+		const toneName = example.split(":")[0];
+		ELEMENTS.EXAMPLES_SELECTOR.append(`<option value="${example}">${toneName}</option>`);
+	});
 }
 
 /**
@@ -260,6 +286,9 @@ function createComposerTable() {
 function resetComposerTable() {
 	ELEMENTS.COMPOSER_TABLE.find(".tone-enabled").removeClass("tone-enabled"); // Clear all enabled note cells.
 	if (RTTTL.AudioPlayer.isPlaying()) RTTTL.AudioPlayer.stop(); // If playback is active, stop it.
+
+	// Clear all existing composed notes.
+	COMPOSED_NOTES.length = 0;
 
 	$('[id^="duration-note-"]').prop("selectedIndex", 0); // Reset all note duration dropdowns.
 	$('[id^="octave-note-"]').prop("selectedIndex", 0); // Reset all note octave dropdowns.
@@ -469,7 +498,7 @@ function toggleNote(noteCell, skipGenerate = false) {
 	const row = +noteCell.attr("row"); // Vertical position (0-11).
 	const isEnabled = noteCell.hasClass("tone-enabled");
 
-	// If the note is being disabled.
+	// If the note is being enabled.
 	if (isEnabled) {
 		const note = GLOBALS.NOTE_LABELS[row];
 		const duration = +$(`#duration-note-${column}`).val();
@@ -545,6 +574,13 @@ $(() => {
 		const newVolume = +ELEMENTS.BUTTON.VOLUME.val();
 		RTTTL.AudioPlayer.setVolume(newVolume);
 		ELEMENTS.VOLUME_TEXT.text(`${newVolume}%`);
+	});
+
+	// RTTTL Example selector.
+	ELEMENTS.EXAMPLES_SELECTOR.on("change", function () {
+		console.debug(`Loading example RTTTL ringtone: '${$(this)?.val().split(":")[0]}'`);
+		ELEMENTS.RTTL_OUTPUT_BOX.val($(this).val());
+		loadFromTextArea();
 	});
 
 	/*========================================================================
