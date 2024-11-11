@@ -105,8 +105,7 @@ export default async function RTTTLSpecification() {
 							<p>
 								The name of the ringtone, this is normally not used by the player but is useful for identifying the ringtone. According to the official
 								specification, the name must not exceed 11 characters in length though this is arbritary and many implementation of RTTTL are generally capable of
-								handling names with much greater lengths. Whilst no character restrictions are specified, it is recommended to use only alphanumeric characters and
-								spaces, with the semicolon <code>:</code> character.
+								handling names with much greater lengths. Whilst no character restrictions are specified, it is recommended to use only alphanumeric characters.
 							</p>
 
 							<h2 id="part-2-control-section" class="mt-4">
@@ -143,10 +142,8 @@ export default async function RTTTLSpecification() {
 										<div class="card-body">
 											<p>
 												The <a href="https://en.wikipedia.org/wiki/Duration_(music)" target="_blank" class="fw-bold">duration</a>{" "}
-												of the note which is measured relative to other notes using a system of whole notes.
-												<strong>
-													<u>It is not measured in time (seconds or minutes)</u>
-												</strong>.
+												of the note which is measured relative to other notes using a system of whole notes &mdash;{" "}
+												<u class="fw-bold">It is not measured in time (seconds or minutes)</u>.
 											</p>
 											<div class="col-4">
 												<table class="table table-vcenter card-table">
@@ -386,8 +383,8 @@ export default async function RTTTLSpecification() {
 							<div class="hr-text" id="references">
 								<span>References</span>
 							</div>
-							<div class="alert alert-secondary mt-3">
-								<ol>
+							<div class="alert alert-info mt-3">
+								<ol start={2}>
 									<li>
 										<a href="https://web.archive.org/web/20000615010005/http://www.binet.lv/personal/nokia/note_syntax_1-1.txt" target="_blank">
 											Web Archive: binet.lv/personal/nokia/note_syntax_1-1.txt

@@ -60,10 +60,10 @@ The following diagram is an example representation of a good basic circuit that 
 
 Note that the actual circuit will vary depending on your controller:
 - For ESP8266 boards, the software PWM output pins available are any in the range `GPIO0` - `GPIO16`
-- For ESP32 boards, the [LEDC PWM channel](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html) can acts as output [*(diagram)*](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/_images/ledc-api-settings.jpg) and you can normally use any pin in the range `GPIO0` - `GPIO33`
+- For ESP32 boards, the [LEDC PWM channel](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html) can acts as output and you can normally use any pin in the range `GPIO0` - `GPIO33`
 
 ## Code
-If your microcontroller is compatible with ESPHome then you can fortunately make use of the existing RTTTL component to easily play the RTTTL strings composed on the web application directly on the ESP device, see the [RTTTL Component](https://esphome.io/components/buzzer.html#rtttl-component) documentation for more information, the source for the underlying RTTTL library can be found [here](https://esphome.io/api/rtttl_8h).
+If your microcontroller is compatible with ESPHome then you can fortunately make use of the existing RTTTL component to easily play the RTTTL strings composed on the web application directly on the ESP device, see the [RTTTL Component](https://esphome.io/components/rtttl.html) documentation for more information, the source for the underlying RTTTL library can be found [here](https://esphome.io/api/rtttl_8h).
 
 ```yaml
 # Buzzer (ESP32 controller)
