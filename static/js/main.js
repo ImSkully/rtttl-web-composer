@@ -69,6 +69,7 @@ const GLOBALS = {
 		"Halloween:d=8,o=5,b=180:d6,g,g,d6,g,g,d6,g,d#6,g,d6,g,g,d6,g,g,d6,g,d#6,g,c#6,f#,f#,c#6,f#,f#,c#6,f#,d6,f#,c#6,f#,f#,c#6,f#,f#,c#6,f#,d6,f#",
 		"James Bond:d=4,o=5,b=80:32p,16c#6,32d#6,32d#6,16d#6,8d#6,16c#6,16c#6,16c#6,16c#6,32e6,32e6,16e6,8e6,16d#6,16d#6,16d#6,16c#6,32d#6,32d#6,16d#6,8d#6,16c#6,16c#6,16c#6,16c#6,32e6,32e6,16e6,8e6,16d#6,16d6,16c#6,16c#7,c.7,16g#6,16f#6,g#.6",
 		"Pager:d=8,o=5,b=160:d6,16p,2d6,16p,d6,16p,2d6,16p,d6,16p,2d6.",
+		"Kimmunicator:d=8,o=7,b=715:d,g,p,g4,p,p,d,g,p,g4,p,p,f,a#,p,d,g",
 		"Rugrats:d=8,o=7,b=100:c,d,e,f.,g.,a,p,a,g,f,e.,d.,c,p,c,d,e,d.,c.,b6,p,b6,c,d,c.,b6.,a6,p,c,d,e,f.,g.,a,p,a,g,f,e.,d.,c,p,c,d,e,d.,c.,b6",
 		"Star Wars:d=8,o=6,b=180:f5,f5,f5,2a#5.,2f.,d#,d,c,2a#.,4f.,d#,d,c,2a#.,4f.,d#,d,d#,2c,4p,f5,f5,f5,2a#5.,2f.,d#,d,c,2a#.,4f.,d#,d,c,2a#.,4f.,d#,d,d#,2c",
 		"The Simpsons:d=4,o=5,b=160:2c6,e6,f#6,8a6,g6,e6,c6,8a,8f#,8f#,8f#,2g,8p,8p,8f#,8f#,8f#,8g,a#,8c6,8c6,8c6,c6",
